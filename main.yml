@@ -1,0 +1,26 @@
+name: Contest List Webhook
+
+on: [push]
+# on :
+#   schedule: 
+#     - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setting up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.8"
+          architecture: "x64"
+      - name: Running Script
+        env: 
+          WEBHOOK: ${{ secrets.WEBHOOK }}
+          CLISTURL: ${{ secrets.CLISTURL }}
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          python script_remote.py
