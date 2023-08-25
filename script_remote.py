@@ -29,11 +29,11 @@ def main():
 
         site = ""
         for i in range(len(site_list)):
-            if (info["host"] == site_list[i]):
+            if (info["resource"] == site_list[i]):
                 site = site_name[i]
         if (site != ""):
             lst.append([site, info["event"], info["href"], contest_date, info["duration"]])
-    lst.reverse()
+    # lst.reverse()
     post_message(lst)
     
     print("done!")
